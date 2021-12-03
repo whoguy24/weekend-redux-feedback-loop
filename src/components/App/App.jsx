@@ -1,13 +1,11 @@
-import React from 'react';
-import axios from 'axios';
-import './App.css';
-
 // Import Components
+import './App.css';
 import CommentsForm from '../CommentsForm/CommentsForm.jsx';
 import FeelingForm from '../FeelingForm/FeelingForm.jsx';
 import SupportForm from '../SupportForm/SupportForm.jsx';
 import UnderstandingForm from '../UnderstandingForm/UnderstandingForm.jsx';
 
+// Define Component Function
 function App() {
 
   return (
@@ -24,4 +22,5 @@ function App() {
   );
 }
 
+// Export Component
 export default App;
