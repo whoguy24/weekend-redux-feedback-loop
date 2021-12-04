@@ -33,6 +33,9 @@ const feedbackReducer = (state = {}, action) => {
         case 'SET_SUPPORT':
             updatedFeedback.support = action.payload;
             return  updatedFeedback;
+        case 'SET_GOOF':
+            updatedFeedback.goof = action.payload;
+            return  updatedFeedback;
         case 'SET_COMMENTS':
             updatedFeedback.comments = action.payload;
             return  updatedFeedback;
@@ -40,6 +43,7 @@ const feedbackReducer = (state = {}, action) => {
             updatedFeedback.feeling = '';
             updatedFeedback.understanding = '';
             updatedFeedback.support = '';
+            updatedFeedback.goof = '';
             updatedFeedback.comments = '';
             return  updatedFeedback;
         default:

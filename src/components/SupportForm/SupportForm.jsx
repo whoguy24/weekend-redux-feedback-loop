@@ -26,7 +26,7 @@ function SupportForm () {
             type: 'SET_SUPPORT',
             payload: support
         })
-        goToNextPage('/comments');
+        goToNextPage('/goof');
     }
 
     // Navigate to Next Page

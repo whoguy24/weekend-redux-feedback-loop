@@ -6,10 +6,10 @@ router.post('/', (req, res) => {
     const feedback = req.body;
     const sqlText = 
         `
-            INSERT INTO feedback (feeling, understanding, support, comments )
-            VALUES ( $1, $2, $3, $4 )
+            INSERT INTO feedback (feeling, understanding, support, goof, comments )
+            VALUES ( $1, $2, $3, $4, $5 )
         `;
-    pool.query(sqlText, [ feedback.feeling, feedback.understanding, feedback.support, feedback.comments ])
+    pool.query(sqlText, [ feedback.feeling, feedback.understanding, feedback.support, feedback.goof, feedback.comments ])
     .then((result) => {
         console.log(`Added feedback to the database`, result);
         res.sendStatus(201);

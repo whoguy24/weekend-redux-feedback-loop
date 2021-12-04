@@ -50,6 +50,7 @@ function Review () {
                 <li>Feeling = {feedback.feeling}</li>
                 <li>Understanding = {feedback.understanding}</li>
                 <li>Support = {feedback.support}</li>
+                <li>TOS Essay = "{feedback.goof}"</li>
                 <li>Comments = "{feedback.comments}"</li>
             </ul>
             <button onClick={ handleButtonClick }>Submit</button>
