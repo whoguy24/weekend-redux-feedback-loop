@@ -38,7 +38,7 @@ function CommentsForm () {
     // Render Elements on the DOM
     return (
         <div>
-            <p>Please leave some comments.</p>
+            <p>Please leave some comments. This step is optional.</p>
             <input 
                 type="text"
                 value={ comments } 

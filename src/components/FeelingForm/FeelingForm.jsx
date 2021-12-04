@@ -18,15 +18,22 @@ function FeelingForm () {
     const dispatch = useDispatch();
 
     // Define Local State
-    const [rating, setRating] = useState('');
+    const [feeling, setFeeling] = useState('');
+    const [error, setError] = useState('');
 
     // Handle Button Click
     function handleButtonClick () {
-        dispatch({
-            type: 'SET_FEELING',
-            payload: rating
-        })
-        goToNextPage('/understanding');
+        if (feeling >= 0 && feeling <= 5) {
+            dispatch({
+                type: 'SET_FEELING',
+                payload: feeling
+            })
+            goToNextPage('/understanding');
+        }
+        else {
+            setFeeling('');
+            setError('Please enter a number between zero and five.');
+        }
     }
 
     // Navigate to Next Page
@@ -41,10 +48,11 @@ function FeelingForm () {
             <p>On a scale of 1 to 5, how are you feeling today?</p>
             <input 
                 type="number"
-                value={ rating } 
-                onChange={(event) => setRating(event.target.value)}
+                value={ feeling } 
+                onChange={(event) => setFeeling(event.target.value)}
             />
             <button onClick={ handleButtonClick }>Next</button>
+            { error, <p className="text-error">{error}</p> }
         </div>
     )
 }

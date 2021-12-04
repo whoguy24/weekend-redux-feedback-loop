@@ -19,14 +19,21 @@ function Goof () {
 
     // Define Local State
     const [goof, setGoof] = useState('');
+    const [error, setError] = useState('');
 
     // Handle Button Click
     function handleButtonClick () {
-        dispatch({
-            type: 'SET_GOOF',
-            payload: goof
-        })
-        goToNextPage('/comments');
+        if (goof.length >= 500) {
+            dispatch({
+                type: 'SET_GOOF',
+                payload: goof
+            })
+            goToNextPage('/comments');
+        }
+        else {
+            setGoof('');
+            setError(`Wow, what a great start! You are well on your way to the required 500 characters for this step.`);
+        }
     }
 
     // Navigate to Next Page
@@ -46,6 +53,7 @@ function Goof () {
                 onChange={(event) => setGoof(event.target.value)}
             />
             <button onClick={ handleButtonClick }>Next</button>
+            { error, <p className="text-error">{error}</p> }
         </div>
     )
 }

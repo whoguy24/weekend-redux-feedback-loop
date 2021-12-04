@@ -19,6 +19,7 @@ function SupportForm () {
 
     // Define Local State
     const [support, setSupport] = useState('');
+    const [error, setError] = useState('');
 
     // Handle Button Click
     function handleButtonClick () {
@@ -27,6 +28,20 @@ function SupportForm () {
             payload: support
         })
         goToNextPage('/goof');
+    }
+
+    function handleButtonClick () {
+        if (support >= 0 && support <= 5) {
+            dispatch({
+                type: 'SET_SUPPORT',
+                payload: support
+            })
+            goToNextPage('/goof');
+        }
+        else {
+            setSupport('');
+            setError('Please enter a number between zero and five.');
+        }
     }
 
     // Navigate to Next Page
@@ -45,6 +60,7 @@ function SupportForm () {
                 onChange={(event) => setSupport(event.target.value)}
             />
             <button onClick={ handleButtonClick }>Next</button>
+            { error, <p className="text-error">{error}</p> }
         </div>
     )
 }

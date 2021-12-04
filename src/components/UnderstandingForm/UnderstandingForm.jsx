@@ -19,14 +19,21 @@ function UnderstandingForm () {
 
     // Define Local State
     const [understanding, setUnderstanding] = useState('');
+    const [error, setError] = useState('');
 
     // Handle Button Click
     function handleButtonClick () {
-        dispatch({
-            type: 'SET_UNDERSTANDING',
-            payload: understanding
-        })
-        goToNextPage('/support');
+        if (understanding >= 0 && understanding <= 5) {
+            dispatch({
+                type: 'SET_UNDERSTANDING',
+                payload: understanding
+            })
+            goToNextPage('/support');
+        }
+        else {
+            setUnderstanding('');
+            setError('Please enter a number between zero and five.');
+        }
     }
 
     // Navigate to Next Page
@@ -45,6 +52,7 @@ function UnderstandingForm () {
                 onChange={(event) => setUnderstanding(event.target.value)}
             />
             <button onClick={ handleButtonClick }>Next</button>
+            { error, <p className="text-error">{error}</p> }
         </div>
     )
 }
