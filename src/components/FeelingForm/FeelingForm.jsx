@@ -8,9 +8,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
 import SmileRating from '../SmileRating/SmileRating.jsx';
-
 
 /////////////////////////////////
 /// DEFINE COMPONENT FUNCTION ///
@@ -24,10 +22,10 @@ function FeelingForm () {
 
     // Define Redux Reducers
     const feedback = useSelector((store) => store.feedbackReducer);
+    const [error, setError] = useState('');
 
     // Define Local State
     const [feeling, setFeeling] = useState(0);
-    const [error, setError] = useState('');
 
     useEffect(() => {
         if (feedback.feeling) {
@@ -37,7 +35,7 @@ function FeelingForm () {
 
     // Handle Button Click
     function handleButtonClick () {
-        if (feeling >= 0 && feeling <= 5) {
+        if (feeling) {
             dispatch({
                 type: 'SET_FEELING',
                 payload: feeling
@@ -45,8 +43,7 @@ function FeelingForm () {
             goToNextPage('/understanding');
         }
         else {
-            setFeeling('');
-            setError('Please enter a number between zero and five.');
+            setError('Please choose a rating before proceeding.');
         }
     }
 
@@ -61,6 +58,7 @@ function FeelingForm () {
         <div>
             <p>How are you feeling today?</p>
             <SmileRating value={feeling} setValueFunction={setFeeling} />
+            { error, <p className="text-error">{error}</p> }
             <button onClick={ handleButtonClick }>Next</button>
         </div>
     )

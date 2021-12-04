@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import SmileRating from '../SmileRating/SmileRating.jsx';
 
 /////////////////////////////////
 /// DEFINE COMPONENT FUNCTION ///
@@ -20,7 +21,7 @@ function SupportForm () {
     const dispatch = useDispatch();
 
     // Define Local State
-    const [support, setSupport] = useState('');
+    const [support, setSupport] = useState(0);
     const [error, setError] = useState('');
 
     // Define Redux Reducers
@@ -42,7 +43,7 @@ function SupportForm () {
     }
 
     function handleButtonClick () {
-        if (support >= 0 && support <= 5) {
+        if (support) {
             dispatch({
                 type: 'SET_SUPPORT',
                 payload: support
@@ -50,8 +51,7 @@ function SupportForm () {
             goToNextPage('/goof');
         }
         else {
-            setSupport('');
-            setError('Please enter a number between zero and five.');
+            setError('Please choose a rating before proceeding.');
         }
     }
 
@@ -64,14 +64,10 @@ function SupportForm () {
     // Render Elements on the DOM
     return (
         <div>
-            <p>On a scale of 1 to 5, how well do you feel supported by your instructors and cohort-mates?</p>
-            <input 
-                type="number"
-                value={ support } 
-                onChange={(event) => setSupport(event.target.value)}
-            />
-            <button onClick={ handleButtonClick }>Next</button>
+            <p>How well do you feel supported by your instructors and cohort-mates?</p>
+            <SmileRating value={support} setValueFunction={setSupport} />
             { error, <p className="text-error">{error}</p> }
+            <button onClick={ handleButtonClick }>Next</button>
         </div>
     )
 }

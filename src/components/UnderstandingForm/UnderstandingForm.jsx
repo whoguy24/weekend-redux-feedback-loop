@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import SmileRating from '../SmileRating/SmileRating.jsx';
 
 /////////////////////////////////
 /// DEFINE COMPONENT FUNCTION ///
@@ -20,7 +21,7 @@ function UnderstandingForm () {
     const dispatch = useDispatch();
 
     // Define Local State
-    const [understanding, setUnderstanding] = useState('');
+    const [understanding, setUnderstanding] = useState(0);
     const [error, setError] = useState('');
 
     // Define Redux Reducers
@@ -42,8 +43,7 @@ function UnderstandingForm () {
             goToNextPage('/support');
         }
         else {
-            setUnderstanding('');
-            setError('Please enter a number between zero and five.');
+            setError('Please choose a rating before proceeding.');
         }
     }
 
@@ -57,13 +57,9 @@ function UnderstandingForm () {
     return (
         <div>
             <p>On a scale of 1 to 5, well do you understand the material presented?</p>
-            <input 
-                type="number"
-                value={ understanding } 
-                onChange={(event) => setUnderstanding(event.target.value)}
-            />
-            <button onClick={ handleButtonClick }>Next</button>
+            <SmileRating value={understanding} setValueFunction={setUnderstanding} />
             { error, <p className="text-error">{error}</p> }
+            <button onClick={ handleButtonClick }>Next</button>
         </div>
     )
 }
