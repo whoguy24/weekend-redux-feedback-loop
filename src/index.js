@@ -16,7 +16,7 @@ import logger from 'redux-logger';
 ///////////////////////
 
 // Feedback Survey Reducer
-// feedback = { id:0, feeling: '4', understanding: '2', support: '5', comments: 'Things are A-OK! 👌' }
+// feedback = { feeling: '4', understanding: '2', support: '5', comments: 'Things are A-OK! 👌' }
 const feedbackReducer = (state = {}, action) => {
 
     // Build new feedback object
@@ -35,6 +35,12 @@ const feedbackReducer = (state = {}, action) => {
             return  updatedFeedback;
         case 'SET_COMMENTS':
             updatedFeedback.comments = action.payload;
+            return  updatedFeedback;
+        case 'CLEAR_FEEDBACK':
+            updatedFeedback.feeling = '';
+            updatedFeedback.understanding = '';
+            updatedFeedback.support = '';
+            updatedFeedback.comments = '';
             return  updatedFeedback;
         default:
             return state;
