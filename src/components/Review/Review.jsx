@@ -11,18 +11,25 @@ import { useNavigate } from 'react-router-dom';
 
 function Review () {
 
-    // Define Navigation for Button
+    // Define Navigate and Dispatch
     const navigate = useNavigate();
 
-    // Handle Next Button
-    function goToNextPage() {
-        navigate('/thank-you');
+    // Handle Button Click
+    function handleButtonClick () {
+        goToNextPage('/thank-you');
+    }
+
+    // Navigate to Next Page
+    // Perhaps a DRY opportunity next week for this function?
+    function goToNextPage(path) {
+        navigate(path);
     };
 
+    // Render Elements on the DOM
     return (
         <div>
-            <p>Review</p>
-            <button onClick={ goToNextPage }>Submit</button>
+            <p>Current Feedback:</p>
+            <button onClick={ handleButtonClick }>Submit</button>
         </div>
     )
 }

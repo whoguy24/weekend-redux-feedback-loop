@@ -3,6 +3,8 @@
 /////////////////////////
 
 import React from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 /////////////////////////////////
@@ -11,18 +13,38 @@ import { useNavigate } from 'react-router-dom';
 
 function CommentsForm () {
 
-    // Define Navigation for Button
+    // Define Navigate and Dispatch
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    // Handle Next Button
-    function goToNextPage() {
-        navigate('/review');
+    // Define Local State
+    const [comments, setComments] = useState('');
+
+    // Handle Button Click
+    function handleButtonClick () {
+        dispatch({
+            type: 'SET_COMMENTS',
+            payload: comments
+        })
+        goToNextPage('/review');
+    }
+
+    // Navigate to Next Page
+    // Perhaps a DRY opportunity next week for this function?
+    function goToNextPage(path) {
+        navigate(path);
     };
 
+    // Render Elements on the DOM
     return (
         <div>
-            <p>Comments Form.</p>
-            <button onClick={ goToNextPage }>Next</button>
+            <p>Please leave some comments.</p>
+            <input 
+                type="text"
+                value={ comments } 
+                onChange={(event) => setComments(event.target.value)}
+            />
+            <button onClick={ handleButtonClick }>Next</button>
         </div>
     )
 }
