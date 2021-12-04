@@ -1,23 +1,60 @@
-// Import Components
+/////////////////////////////////////////
+/// IMPORT STYLES, ROUTER, COMPONENTS ///
+/////////////////////////////////////////
+
+// Styles
 import './App.css';
-import CommentsForm from '../CommentsForm/CommentsForm.jsx';
+
+// Import Router Nonsense
+import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
+// Components
+import React from 'react';
+import Welcome from '../Welcome/Welcome.jsx';
 import FeelingForm from '../FeelingForm/FeelingForm.jsx';
-import SupportForm from '../SupportForm/SupportForm.jsx';
 import UnderstandingForm from '../UnderstandingForm/UnderstandingForm.jsx';
+import SupportForm from '../SupportForm/SupportForm.jsx';
+import CommentsForm from '../CommentsForm/CommentsForm.jsx';
 
-// Define Component Function
+/////////////////////////////////
+/// DEFINE COMPONENT FUNCTION ///
+/////////////////////////////////
+
 function App() {
-
   return (
     <div className='App'>
       <header className='App-header'>
         <h1 className='App-title'>Feedback!</h1>
-        <h4>Don't forget it!</h4>
       </header>
-      <CommentsForm />
-      <FeelingForm />
-      <SupportForm />
-      <UnderstandingForm />
+      <Router>
+
+       <ul>
+          <li>
+            <Link to="/">Welcome</Link>
+          </li>
+          <li>
+            <Link to="/feeling">Feeling</Link>
+          </li>
+          <li>
+            <Link to="/understanding">Understanding</Link>
+          </li>
+          <li>
+            <Link to="/support">Support</Link>
+          </li>
+          <li>
+            <Link to="/comments">Comments</Link>
+          </li>
+        </ul>
+
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/feeling" element={<FeelingForm />} />
+          <Route path="/understanding" element={<UnderstandingForm />} />
+          <Route path="/support" element={<SupportForm />} />
+          <Route path="/comments" element={<CommentsForm />} />
+        </Routes>
+
+      </Router>
     </div>
   );
 }

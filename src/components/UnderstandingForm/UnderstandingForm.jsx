@@ -1,4 +1,13 @@
-// Define Component Function
+/////////////////////////
+/// IMPORT COMPONENTS ///
+/////////////////////////
+
+import React from 'react';
+
+/////////////////////////////////
+/// DEFINE COMPONENT FUNCTION ///
+/////////////////////////////////
+
 function UnderstandingForm () {
     return (
         <p>Understanding Form.</p>
