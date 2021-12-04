@@ -16,7 +16,7 @@ import logger from 'redux-logger';
 ///////////////////////
 
 // Feedback Survey Reducer
-// feedback = { feeling: '4', understanding: '2', support: '5', comments: 'Things are A-OK! 👌' }
+// feedback = { id:0, feeling: '4', understanding: '2', support: '5', comments: 'Things are A-OK! 👌' }
 const feedbackReducer = (state = {}, action) => {
 
     // Build new feedback object

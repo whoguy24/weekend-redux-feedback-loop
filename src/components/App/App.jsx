@@ -15,6 +15,8 @@ import FeelingForm from '../FeelingForm/FeelingForm.jsx';
 import UnderstandingForm from '../UnderstandingForm/UnderstandingForm.jsx';
 import SupportForm from '../SupportForm/SupportForm.jsx';
 import CommentsForm from '../CommentsForm/CommentsForm.jsx';
+import Review from '../Review/Review.jsx';
+import ThankYou from '../ThankYou/ThankYou.jsx';
 
 /////////////////////////////////
 /// DEFINE COMPONENT FUNCTION ///
@@ -44,6 +46,12 @@ function App() {
           <li>
             <Link to="/comments">Comments</Link>
           </li>
+          <li>
+            <Link to="/review">Review</Link>
+          </li>
+          <li>
+            <Link to="/thank-you">Thank You</Link>
+          </li>
         </ul>
 
         <Routes>
@@ -52,6 +60,9 @@ function App() {
           <Route path="/understanding" element={<UnderstandingForm />} />
           <Route path="/support" element={<SupportForm />} />
           <Route path="/comments" element={<CommentsForm />} />
+          <Route path="/review" element={<Review />} />
+          <Route path="/thank-you" element={<ThankYou />} />
+      
         </Routes>
 
       </Router>
