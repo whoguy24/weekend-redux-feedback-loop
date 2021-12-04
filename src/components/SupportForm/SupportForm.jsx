@@ -3,14 +3,27 @@
 /////////////////////////
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 /////////////////////////////////
 /// DEFINE COMPONENT FUNCTION ///
 /////////////////////////////////
 
 function SupportForm () {
+
+    // Define Navigation for Button
+    const navigate = useNavigate();
+
+    // Handle Next Button
+    function goToNextPage() {
+        navigate('/comments');
+    };
+
     return (
-        <p>Support Form.</p>
+        <div>
+            <p>Support Form.</p>
+            <button onClick={ goToNextPage }>Next</button>
+        </div>
     )
 }
 
