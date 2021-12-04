@@ -24,14 +24,21 @@ import ThankYou from '../ThankYou/ThankYou.jsx';
 /////////////////////////////////
 
 function App() {
+  
+  // Render DOM
   return (
     <div className='App'>
+
+      {/* Define header */}
       <header className='App-header'>
         <h1 className='App-title'>Feedback!</h1>
       </header>
+
+      {/* Define Router Navigation */}
       <Router>
 
-       <ul>
+        {/* Links for development purposes, to be removed later */}
+        <ul>
           <li>
             <Link to="/">Welcome</Link>
           </li>
@@ -58,6 +65,7 @@ function App() {
           </li>
         </ul>
 
+        {/* Define Routes */}
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/feeling" element={<FeelingForm />} />
@@ -67,7 +75,6 @@ function App() {
           <Route path="/comments" element={<CommentsForm />} />
           <Route path="/review" element={<Review />} />
           <Route path="/thank-you" element={<ThankYou />} />
-      
         </Routes>
 
       </Router>
