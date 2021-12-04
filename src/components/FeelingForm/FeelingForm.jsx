@@ -36,20 +36,20 @@ function FeelingForm () {
 
     // Handle Button Click
     function handleButtonClick( direction ) {
-        if (direction === 'Forward') {
-            if (feeling) {
-                dispatch({
-                    type: 'SET_FEELING',
-                    payload: feeling
-                })
+        if (feeling) {
+            dispatch({
+                type: 'SET_FEELING',
+                payload: feeling
+            })
+            if (direction === 'Forward') {
                 navigate('/understanding')
             }
-            else {
-                setError('Please choose a rating before proceeding.');
+            else if (direction === 'Back') {
+                navigate('/')
             }
         }
-        else if (direction === 'Back') {
-            navigate('/')
+        else {
+            setError('Please choose a rating before proceeding.');
         }
     }
 
