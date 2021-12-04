@@ -37,8 +37,8 @@ function App() {
       {/* Define Router Navigation */}
       <Router>
 
-        {/* Links for development purposes */}
-        <ul>
+        {/* Direct links for development purposes */}
+        {/* <ul>
           <li>
             <Link to="/">Welcome</Link>
           </li>
@@ -63,7 +63,7 @@ function App() {
           <li>
             <Link to="/thank-you">Thank You</Link>
           </li>
-        </ul>
+        </ul> */}
 
         {/* Define Routes */}
         <Routes>

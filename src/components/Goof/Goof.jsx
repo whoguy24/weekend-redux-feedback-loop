@@ -36,7 +36,7 @@ function Goof () {
     // Handle Button Click
     function handleButtonClick( direction ) {
         if (direction === 'Forward') {
-            if (goof.length >= 5) {
+            if (goof.length >= 500) {
                 dispatch({
                     type: 'SET_GOOF',
                     payload: goof
@@ -61,7 +61,7 @@ function Goof () {
     // Render Elements on the DOM
     return (
         <div>
-            <p>Please write a brief but thoughtful essay on the following topic:</p>
+            <p>Please write a brief but thorough essay on the following topic:</p>
             <p>What ethical questions emerged from the popular television serial "Star Trek: The Original Series", and how do they apply to a 21st century worldview? Please utilize examples from the show.</p>
             <input 
                 type="text"
