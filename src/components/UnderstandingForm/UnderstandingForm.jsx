@@ -27,6 +27,7 @@ function UnderstandingForm () {
     // Define Redux Reducers
     const feedback = useSelector((store) => store.feedbackReducer);
 
+    // Set Value if One Exists in Redux Store
     useEffect(() => {
         if (feedback.understanding) {
             setUnderstanding(feedback.understanding)
@@ -34,32 +35,32 @@ function UnderstandingForm () {
     }, []);
 
     // Handle Button Click
-    function handleButtonClick () {
-        if (understanding >= 0 && understanding <= 5) {
+    function handleButtonClick( direction ) {
+        if (understanding) {
             dispatch({
                 type: 'SET_UNDERSTANDING',
                 payload: understanding
             })
-            goToNextPage('/support');
+            if (direction === 'Forward') {
+                navigate('/support')
+            }
+            else if (direction === 'Back') {
+                navigate('/feeling')
+            }
         }
         else {
             setError('Please choose a rating before proceeding.');
         }
     }
 
-    // Navigate to Next Page
-    // Perhaps a DRY opportunity next week for this function?
-    function goToNextPage(path) {
-        navigate(path);
-    };
-
     // Render Elements on the DOM
     return (
         <div>
-            <p>On a scale of 1 to 5, well do you understand the material presented?</p>
+            <p>How well do you understand the material presented?</p>
             <SmileRating value={understanding} setValueFunction={setUnderstanding} />
             { error, <p className="text-error">{error}</p> }
-            <button onClick={ handleButtonClick }>Next</button>
+            <button onClick = {() => { handleButtonClick('Back') }}>Back</button>
+            <button onClick = {() => { handleButtonClick('Forward') }}>Next</button>
         </div>
     )
 }

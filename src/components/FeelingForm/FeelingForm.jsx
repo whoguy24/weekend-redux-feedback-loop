@@ -27,6 +27,7 @@ function FeelingForm () {
     // Define Local State
     const [feeling, setFeeling] = useState(0);
 
+    // Set Value if One Exists in Redux Store
     useEffect(() => {
         if (feedback.feeling) {
             setFeeling(feedback.feeling)
@@ -34,24 +35,23 @@ function FeelingForm () {
     }, []);
 
     // Handle Button Click
-    function handleButtonClick () {
-        if (feeling) {
-            dispatch({
-                type: 'SET_FEELING',
-                payload: feeling
-            })
-            goToNextPage('/understanding');
+    function handleButtonClick( direction ) {
+        if (direction === 'Forward') {
+            if (feeling) {
+                dispatch({
+                    type: 'SET_FEELING',
+                    payload: feeling
+                })
+                navigate('/understanding')
+            }
+            else {
+                setError('Please choose a rating before proceeding.');
+            }
         }
-        else {
-            setError('Please choose a rating before proceeding.');
+        else if (direction === 'Back') {
+            navigate('/')
         }
     }
-
-    // Navigate to Next Page
-    // Perhaps a DRY opportunity next week for this function?
-    function goToNextPage(path) {
-        navigate(path);
-    };
 
     // Render Elements on the DOM
     return (
@@ -59,7 +59,8 @@ function FeelingForm () {
             <p>How are you feeling today?</p>
             <SmileRating value={feeling} setValueFunction={setFeeling} />
             { error, <p className="text-error">{error}</p> }
-            <button onClick={ handleButtonClick }>Next</button>
+            <button onClick = {() => { handleButtonClick('Back') }}>Back</button>
+            <button onClick = {() => { handleButtonClick('Forward') }}>Next</button>
         </div>
     )
 }

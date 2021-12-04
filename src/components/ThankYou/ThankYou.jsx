@@ -14,16 +14,11 @@ function ThankYou () {
     // Define Navigation for Button
     const navigate = useNavigate();
 
-    // Handle Next Button
-    function goToNextPage() {
-        navigate('/');
-    };
-
+    // Render Elements on the DOM
     return (
         <div>
-            <p>Your feedback has been submitted.</p>
-            <p>Thank you!</p>
-            <button onClick={ goToNextPage }>Close</button>
+            <p>Your feedback has been submitted. Thank you!</p>
+            <button onClick = {() => { navigate('/') }}>Done</button>
         </div>
     )
 }

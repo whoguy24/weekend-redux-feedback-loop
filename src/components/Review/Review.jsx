@@ -22,25 +22,24 @@ function Review () {
     const feedback = useSelector((store) => store.feedbackReducer);
 
     // Handle Button Click
-    function handleButtonClick () {
-        axios({
-            method: 'POST',
-            url: '/feedback',
-            data: feedback
-        })
-        .then((res) => {  
-            dispatch({
-                type: 'CLEAR_FEEDBACK',
+    function handleButtonClick( direction ) {
+        if (direction === 'Forward') {
+            axios({
+                method: 'POST',
+                url: '/feedback',
+                data: feedback
             })
-        })
-        goToNextPage('/thank-you');
+            .then((res) => {  
+                dispatch({
+                    type: 'CLEAR_FEEDBACK',
+                })
+                navigate('/thank-you');
+            })
+        }
+        else if (direction === 'Back') {
+            navigate('/comments')
+        }
     }
-
-    // Navigate to Next Page
-    // Perhaps a DRY opportunity next week for this function?
-    function goToNextPage(path) {
-        navigate(path);
-    };
 
     // Render Elements on the DOM
     return (
@@ -53,7 +52,8 @@ function Review () {
                 <li>TOS Essay = "{feedback.goof}"</li>
                 <li>Comments = "{feedback.comments}"</li>
             </ul>
-            <button onClick={ handleButtonClick }>Submit</button>
+            <button onClick = {() => { handleButtonClick('Back') }}>Back</button>
+            <button onClick = {() => { handleButtonClick('Forward') }}>Submit</button>
         </div>
     )
 }

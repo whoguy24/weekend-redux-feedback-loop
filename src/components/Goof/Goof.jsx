@@ -26,6 +26,7 @@ function Goof () {
     // Define Redux Reducers
     const feedback = useSelector((store) => store.feedbackReducer);
 
+    // Set Value if One Exists in Redux Store
     useEffect(() => {
         if (feedback.goof) {
             setGoof(feedback.goof)
@@ -33,18 +34,22 @@ function Goof () {
     }, []);
 
     // Handle Button Click
-    function handleButtonClick () {
-        if (goof.length >= 500) {
-            dispatch({
-                type: 'SET_GOOF',
-                payload: goof
-            })
-            goToNextPage('/comments');
+    function handleButtonClick( direction ) {
+        if (direction === 'Forward') {
+            if (goof.length >= 5) {
+                dispatch({
+                    type: 'SET_GOOF',
+                    payload: goof
+                })
+                navigate('/review')
+            }
+            else {
+                setError('Wow, what a great start! You are well on your way to the required 500 characters for this step.');
+            }
         }
-        else {
-            setGoof('');
-            setError(`Wow, what a great start! You are well on your way to the required 500 characters for this step.`);
-        }
+        else if (direction === 'Back') {
+            navigate('/support')
+        }  
     }
 
     // Navigate to Next Page
@@ -63,8 +68,9 @@ function Goof () {
                 value={ goof } 
                 onChange={(event) => setGoof(event.target.value)}
             />
-            <button onClick={ handleButtonClick }>Next</button>
             { error, <p className="text-error">{error}</p> }
+            <button onClick = {() => { handleButtonClick('Back') }}>Back</button>
+            <button onClick = {() => { handleButtonClick('Forward') }}>Next</button>
         </div>
     )
 }
