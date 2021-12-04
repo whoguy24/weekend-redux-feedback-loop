@@ -4,7 +4,9 @@
 
 import React from 'react';
 import { useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 /////////////////////////////////
@@ -20,6 +22,15 @@ function SupportForm () {
     // Define Local State
     const [support, setSupport] = useState('');
     const [error, setError] = useState('');
+
+    // Define Redux Reducers
+    const feedback = useSelector((store) => store.feedbackReducer);
+
+    useEffect(() => {
+        if (feedback.support) {
+            setSupport(feedback.support)
+        }
+    }, []);
 
     // Handle Button Click
     function handleButtonClick () {

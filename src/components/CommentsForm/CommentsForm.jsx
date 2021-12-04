@@ -4,7 +4,9 @@
 
 import React from 'react';
 import { useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 /////////////////////////////////
@@ -19,6 +21,15 @@ function CommentsForm () {
 
     // Define Local State
     const [comments, setComments] = useState('');
+
+    // Define Redux Reducers
+    const feedback = useSelector((store) => store.feedbackReducer);
+
+    useEffect(() => {
+        if (feedback.comments) {
+            setComments(feedback.comments)
+        }
+    }, []);
 
     // Handle Button Click
     function handleButtonClick () {

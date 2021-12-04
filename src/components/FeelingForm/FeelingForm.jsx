@@ -4,7 +4,9 @@
 
 import React from 'react';
 import { useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 /////////////////////////////////
@@ -17,9 +19,18 @@ function FeelingForm () {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    // Define Redux Reducers
+    const feedback = useSelector((store) => store.feedbackReducer);
+
     // Define Local State
     const [feeling, setFeeling] = useState('');
     const [error, setError] = useState('');
+
+    useEffect(() => {
+        if (feedback.feeling) {
+            setFeeling(feedback.feeling)
+        }
+    }, []);
 
     // Handle Button Click
     function handleButtonClick () {
