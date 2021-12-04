@@ -38,7 +38,7 @@ function App() {
       <Router>
 
         {/* Links for development purposes */}
-        <ul>
+        {/* <ul>
           <li>
             <Link to="/">Welcome</Link>
           </li>
@@ -63,7 +63,7 @@ function App() {
           <li>
             <Link to="/thank-you">Thank You</Link>
           </li>
-        </ul>
+        </ul> */}
 
         {/* Define Routes */}
         <Routes>

@@ -9,6 +9,9 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import SmileRating from '../SmileRating/SmileRating.jsx';
+
+
 /////////////////////////////////
 /// DEFINE COMPONENT FUNCTION ///
 /////////////////////////////////
@@ -23,7 +26,7 @@ function FeelingForm () {
     const feedback = useSelector((store) => store.feedbackReducer);
 
     // Define Local State
-    const [feeling, setFeeling] = useState('');
+    const [feeling, setFeeling] = useState(0);
     const [error, setError] = useState('');
 
     useEffect(() => {
@@ -56,14 +59,9 @@ function FeelingForm () {
     // Render Elements on the DOM
     return (
         <div>
-            <p>On a scale of 1 to 5, how are you feeling today?</p>
-            <input 
-                type="number"
-                value={ feeling } 
-                onChange={(event) => setFeeling(event.target.value)}
-            />
+            <p>How are you feeling today?</p>
+            <SmileRating value={feeling} setValueFunction={setFeeling} />
             <button onClick={ handleButtonClick }>Next</button>
-            { error, <p className="text-error">{error}</p> }
         </div>
     )
 }
