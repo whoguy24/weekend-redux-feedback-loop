@@ -52,6 +52,14 @@ const feedbackReducer = (state = {}, action) => {
 
 }
 
+// Feedback Survey List Reducer
+const feedbackListReducer = (state = [], action) => {
+    if (action.type === 'SET_FEEDBACK_LIST') {
+        return action.payload;
+    }
+    return state;
+}
+
 //////////////////////////
 /// CREATE REDUX STORE ///
 //////////////////////////
@@ -60,7 +68,8 @@ const feedbackReducer = (state = {}, action) => {
 // Apply Redux Logger
 const storeInstance = createStore(
     combineReducers({
-        feedbackReducer
+        feedbackReducer,
+        feedbackListReducer
     }),
     applyMiddleware( logger )
 );

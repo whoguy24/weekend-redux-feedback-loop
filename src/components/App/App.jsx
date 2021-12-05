@@ -7,6 +7,9 @@ import './App.css';
 
 // Import Router Nonsense
 import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
 
 // Components
 import React from 'react';
@@ -18,12 +21,29 @@ import Goof from '../Goof/Goof.jsx';
 import CommentsForm from '../CommentsForm/CommentsForm.jsx';
 import Review from '../Review/Review.jsx';
 import ThankYou from '../ThankYou/ThankYou.jsx';
+import Admin from '../Admin/Admin.jsx';
 
 /////////////////////////////////
 /// DEFINE COMPONENT FUNCTION ///
 /////////////////////////////////
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    axios({
+      method: 'GET',
+      url: '/feedback'
+    })
+    .then((res) => {
+      const feedbackList = res.data;
+      dispatch({
+        type: 'SET_FEEDBACK_LIST',
+        payload: feedbackList
+      })
+    })
+  }, [])
   
   // Render DOM
   return (
@@ -38,7 +58,7 @@ function App() {
       <Router>
 
         {/* Direct links for development purposes */}
-        {/* <ul>
+        <ul>
           <li>
             <Link to="/">Welcome</Link>
           </li>
@@ -63,7 +83,10 @@ function App() {
           <li>
             <Link to="/thank-you">Thank You</Link>
           </li>
-        </ul> */}
+          <li>
+            <Link to="/admin">Admin</Link>
+          </li>
+        </ul>
 
         {/* Define Routes */}
         <Routes>
@@ -75,6 +98,7 @@ function App() {
           <Route path="/comments" element={<CommentsForm />} />
           <Route path="/review" element={<Review />} />
           <Route path="/thank-you" element={<ThankYou />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
 
       </Router>

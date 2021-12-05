@@ -20,4 +20,21 @@ router.post('/', (req, res) => {
     })
 })
 
+router.get('/', (req, res) => {
+    let sqlText = `
+        SELECT feeling, understanding, support, goof, comments, flagged, date
+        FROM "feedback" 
+        ORDER BY "date" DESC;
+    `;
+    pool.query(sqlText)
+    .then(result => {
+        console.log(`GET request from database`, result);
+        res.send(result.rows);
+    })
+    .catch(error => {
+        console.log(`Error making database query ${sqlText}`, error);
+        res.sendStatus(500);
+    });
+});
+
 module.exports = router ;
