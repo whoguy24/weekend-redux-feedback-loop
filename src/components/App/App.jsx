@@ -58,7 +58,7 @@ function App() {
       <Router>
 
         {/* Direct links for development purposes */}
-        <ul>
+        {/* <ul>
           <li>
             <Link to="/">Welcome</Link>
           </li>
@@ -86,7 +86,7 @@ function App() {
           <li>
             <Link to="/admin">Admin</Link>
           </li>
-        </ul>
+        </ul> */}
 
         {/* Define Routes */}
         <Routes>
